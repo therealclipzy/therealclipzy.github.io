@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLIPZY Admin</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #08080d;
+    color: white;
+    min-height: 100vh;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 230px;
+    height: 100vh;
+    background: #101016;
+    border-right: 1px solid #252530;
+    padding: 25px 15px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 35px;
+    color: #a855f7;
+}
+
+.nav button {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 8px;
+    border: none;
+    border-radius: 10px;
+    background: transparent;
+    color: #aaa;
+    text-align: left;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.nav button:hover,
+.nav button.active {
+    background: #1d1628;
+    color: white;
+}
+
+.main {
+    margin-left: 230px;
+    padding: 35px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 30px;
+}
+
+.view-site {
+    background: #9333ea;
+    color: white;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: #111118;
+    border: 1px solid #252530;
+    border-radius: 15px;
+    padding: 22px;
+}
+
+.card h3 {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.card strong {
+    font-size: 30px;
+}
+
+.panel {
+    background: #111118;
+    border: 1px solid #252530;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.panel h2 {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 15px 0 7px;
+    color: #aaa;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 13px;
+    background: #09090d;
+    color: white;
+    border: 1px solid #30303b;
+    border-radius: 9px;
+    outline: none;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #9333ea;
+}
+
+.save {
+    margin-top: 20px;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 9px;
+    background: #9333ea;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.save:hover {
+    background: #7e22ce;
+}
+
+.announcement {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.announcement input {
+    flex: 1;
+}
+
+.notice {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #17171f;
+    color: #aaa;
+}
+
+.hidden {
+    display: none;
+}
+
+@media(max-width: 750px) {
+
+    .sidebar {
+        width: 70px;
+        padding: 15px 8px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .nav button {
+        font-size: 0;
+        text-align: center;
+    }
+
+    .nav button::first-letter {
+        font-size: 20px;
+    }
+
+    .main {
+        margin-left: 70px;
+        padding: 20px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div class="logo">CLIPZY</div>
+
+    <div class="nav">
+        <button class="active" onclick="showPage('dashboard', this)">🏠 Dashboard</button>
+        <button onclick="showPage('homepage', this)">🌐 Homepage</button>
+        <button onclick="showPage('projects', this)">📁 Projects</button>
+        <button onclick="showPage('links', this)">🔗 Links</button>
+        <button onclick="showPage('announcements', this)">📢 Announcements</button>
+        <button onclick="showPage('settings', this)">⚙️ Settings</button>
+    </div>
+
+</div>
+
+
+<div class="main">
+
+    <div class="header">
+        <h1>Admin Dashboard</h1>
+        <a class="view-site" href="../" target="_blank">View Site</a>
+    </div>
+
+
+    <!-- DASHBOARD -->
+
+    <section id="dashboard">
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Website</h3>
+                <strong>ONLINE</strong>
+            </div>
+
+            <div class="card">
+                <h3>Projects</h3>
+                <strong id="projectCount">0</strong>
+            </div>
+
+            <div class="card">
+                <h3>Announcements</h3>
+                <strong id="announcementCount">0</strong>
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <h2>Welcome back 👋</h2>
+
+            <p style="color:#aaa;">
+                Welcome to the CLIPZY administrator dashboard.
+            </p>
+
+            <div class="notice">
+                Stage 1 Admin Panel — changes are stored in this browser.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOMEPAGE -->
+
+    <section id="homepage" class="hidden">
+
+        <div class="panel">
+
+            <h2>Edit Homepage</h2>
+
+            <label>Hero Title</label>
+            <input id="heroTitle" placeholder="CLIPZY">
+
+            <label>Hero Description</label>
+            <textarea id="heroDescription"
+            placeholder="Welcome to my website..."></textarea>
+
+            <button class="save" onclick="saveHomepage()">
+                Save Homepage
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+
+    <section id="projects" class="hidden">
+
+        <div class="panel">
+
+            <h2>Add Project</h2>
+
+            <label>Project Name</label>
+            <input id="projectName" placeholder="My Roblox Game">
+
+            <label>Project Description</label>
+            <textarea id="projectDescription"
+            placeholder="Project description"></textarea>
+
+            <button class="save" onclick="addProject()">
+                Add Project
+            </button>
+
+        </div>
+
+        <div class="panel">
+
+            <h2>Your Projects</h2>
+
+            <div id="projectsList"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LINKS -->
+
+    <section id="links" class="hidden">
+
+        <div class="panel">
+
+            <h2>Social Links</h2>
+
+            <label>YouTube</label>
+            <input id="youtube" placeholder="https://youtube.com/...">
+
+            <label>Discord</label>
+            <input id="discord" placeholder="https://discord.gg/...">
+
+            <label>TikTok</label>
+            <input id="tiktok" placeholder="https://tiktok.com/@...">
+
+            <button class="save" onclick="saveLinks()">
+                Save Links
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ANNOUNCEMENTS -->
+
+    <section id="announcements" class="hidden">
+
+        <div class="panel">
+
+            <h2>Create Announcement</h2>
+
+            <div class="announcement">
+
+                <input
+                    id="announcementText"
+                    placeholder="Write an announcement..."
+                >
+
+                <button class="save" onclick="addAnnouncement()">
+                    Post
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <h2>Announcements</h2>
+
+            <div id="announcementList"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SETTINGS -->
+
+    <section id="settings" class="hidden">
+
+        <div class="panel">
+
+            <h2>Settings</h2>
+
+            <p style="color:#aaa;">
+                CLIPZY Admin Panel — Stage 1
+            </p>
+
+            <div class="notice">
+                This version does not use a real server or database.
+                Your saved information stays in your browser.
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+function showPage(page, button) {
+
+    const pages = [
+        "dashboard",
+        "homepage",
+        "projects",
+        "links",
+        "announcements",
+        "settings"
+    ];
+
+    pages.forEach(function(p) {
+        document.getElementById(p).classList.add("hidden");
+    });
+
+    document.getElementById(page).classList.remove("hidden");
+
+    document.querySelectorAll(".nav button").forEach(function(btn) {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    updateStats();
+}
+
+
+/* HOMEPAGE */
+
+function saveHomepage() {
+
+    localStorage.setItem(
+        "heroTitle",
+        document.getElementById("heroTitle").value
+    );
+
+    localStorage.setItem(
+        "heroDescription",
+        document.getElementById("heroDescription").value
+    );
+
+    alert("Homepage settings saved!");
+}
+
+
+/* LINKS */
+
+function saveLinks() {
+
+    localStorage.setItem(
+        "youtube",
+        document.getElementById("youtube").value
+    );
+
+    localStorage.setItem(
+        "discord",
+        document.getElementById("discord").value
+    );
+
+    localStorage.setItem(
+        "tiktok",
+        document.getElementById("tiktok").value
+    );
+
+    alert("Links saved!");
+}
+
+
+/* PROJECTS */
+
+function addProject() {
+
+    const name = document.getElementById("projectName").value;
+    const description =
+        document.getElementById("projectDescription").value;
+
+    if (!name) {
+        alert("Enter a project name!");
+        return;
+    }
+
+    let projects =
+        JSON.parse(localStorage.getItem("projects") || "[]");
+
+    projects.push({
+        name: name,
+        description: description
+    });
+
+    localStorage.setItem(
+        "projects",
+        JSON.stringify(projects)
+    );
+
+    document.getElementById("projectName").value = "";
+    document.getElementById("projectDescription").value = "";
+
+    displayProjects();
+    updateStats();
+}
+
+
+function displayProjects() {
+
+    let projects =
+        JSON.parse(localStorage.getItem("projects") || "[]");
+
+    const list =
+        document.getElementById("projectsList");
+
+    list.innerHTML = "";
+
+    projects.forEach(function(project, index) {
+
+        const div = document.createElement("div");
+
+        div.className = "notice";
+
+        div.innerHTML =
+            "<strong>" + project.name + "</strong><br>" +
+            project.description +
+            "<br><br>" +
+            "<button onclick='deleteProject(" + index + ")' " +
+            "style='padding:8px;border:0;border-radius:6px;cursor:pointer'>" +
+            "Delete</button>";
+
+        list.appendChild(div);
+    });
+}
+
+
+function deleteProject(index) {
+
+    let projects =
+        JSON.parse(localStorage.getItem("projects") || "[]");
+
+    projects.splice(index, 1);
+
+    localStorage.setItem(
+        "projects",
+        JSON.stringify(projects)
+    );
+
+    displayProjects();
+    updateStats();
+}
+
+
+/* ANNOUNCEMENTS */
+
+function addAnnouncement() {
+
+    const text =
+        document.getElementById("announcementText").value;
+
+    if (!text) {
+        alert("Write an announcement first!");
+        return;
+    }
+
+    let announcements =
+        JSON.parse(
+            localStorage.getItem("announcements") || "[]"
+        );
+
+    announcements.push(text);
+
+    localStorage.setItem(
+        "announcements",
+        JSON.stringify(announcements)
+    );
+
+    document.getElementById("announcementText").value = "";
+
+    displayAnnouncements();
+    updateStats();
+}
+
+
+function displayAnnouncements() {
+
+    let announcements =
+        JSON.parse(
+            localStorage.getItem("announcements") || "[]"
+        );
+
+    const list =
+        document.getElementById("announcementList");
+
+    list.innerHTML = "";
+
+    announcements.forEach(function(text, index) {
+
+        const div = document.createElement("div");
+
+        div.className = "notice";
+
+        div.innerHTML =
+            "📢 " + text +
+            "<br><br>" +
+            "<button onclick='deleteAnnouncement(" +
+            index +
+            ")' style='padding:8px;border:0;border-radius:6px;cursor:pointer'>" +
+            "Delete</button>";
+
+        list.appendChild(div);
+    });
+}
+
+
+function deleteAnnouncement(index) {
+
+    let announcements =
+        JSON.parse(
+            localStorage.getItem("announcements") || "[]"
+        );
+
+    announcements.splice(index, 1);
+
+    localStorage.setItem(
+        "announcements",
+        JSON.stringify(announcements)
+    );
+
+    displayAnnouncements();
+    updateStats();
+}
+
+
+/* STATS */
+
+function updateStats() {
+
+    let projects =
+        JSON.parse(localStorage.getItem("projects") || "[]");
+
+    let announcements =
+        JSON.parse(
+            localStorage.getItem("announcements") || "[]"
+        );
+
+    document.getElementById("projectCount").textContent =
+        projects.length;
+
+    document.getElementById("announcementCount").textContent =
+        announcements.length;
+}
+
+
+/* LOAD SAVED DATA */
+
+window.onload = function() {
+
+    document.getElementById("heroTitle").value =
+        localStorage.getItem("heroTitle") || "";
+
+    document.getElementById("heroDescription").value =
+        localStorage.getItem("heroDescription") || "";
+
+    document.getElementById("youtube").value =
+        localStorage.getItem("youtube") || "";
+
+    document.getElementById("discord").value =
+        localStorage.getItem("discord") || "";
+
+    document.getElementById("tiktok").value =
+        localStorage.getItem("tiktok") || "";
+
+    displayProjects();
+    displayAnnouncements();
+    updateStats();
+};
+
+</script>
+
+</body>
+              </html>
