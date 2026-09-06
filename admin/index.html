@@ -3,972 +3,153 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CLIPZY Admin</title>
 
 <style>
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
+    margin: 0;
+    min-height: 100vh;
     font-family: Arial, sans-serif;
     background:
-        radial-gradient(circle at top left, #24105c, transparent 35%),
-        radial-gradient(circle at bottom right, #111d55, transparent 35%),
-        #080812;
+        radial-gradient(circle at top left, #32106b, transparent 45%),
+        radial-gradient(circle at bottom right, #101b55, transparent 45%),
+        #070712;
     color: white;
-    min-height: 100vh;
-}
-
-/* LOGIN */
-
-#loginScreen {
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
 }
 
 .login-box {
-    width: 100%;
-    max-width: 420px;
-    background: rgba(20, 20, 40, 0.85);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 24px;
-    padding: 35px;
-    box-shadow: 0 25px 80px rgba(0,0,0,0.5);
-    backdrop-filter: blur(20px);
+    width: min(500px, 90%);
+    background: rgba(25, 25, 45, 0.95);
+    border: 1px solid #393957;
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
 }
 
 .logo {
-    font-size: 38px;
+    text-align: center;
+    font-size: 42px;
     font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.subtitle {
     text-align: center;
-    margin-bottom: 8px;
-}
-
-.login-subtitle {
-    text-align: center;
-    color: #aaaabd;
-    margin-bottom: 30px;
-}
-
-input,
-textarea {
-    width: 100%;
-    padding: 14px 16px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(255,255,255,0.06);
-    color: white;
-    outline: none;
-    font-size: 15px;
-    margin-top: 8px;
-}
-
-textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-input:focus,
-textarea:focus {
-    border-color: #7c5cff;
+    color: #aaaac0;
+    font-size: 20px;
+    margin-bottom: 35px;
 }
 
 label {
     display: block;
-    margin-top: 18px;
-    font-weight: 700;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 17px;
+    border-radius: 14px;
+    border: 1px solid #40405c;
+    background: #202033;
+    color: white;
+    font-size: 17px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #8b5cff;
 }
 
 button {
-    border: none;
-    border-radius: 12px;
-    padding: 13px 18px;
-    font-size: 15px;
-    font-weight: 800;
-    cursor: pointer;
-    color: white;
-    background: linear-gradient(135deg, #6d4aff, #9a5cff);
-    transition: 0.2s;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
-}
-
-.login-button {
     width: 100%;
-    margin-top: 22px;
-}
-
-.error {
-    color: #ff7777;
-    text-align: center;
-    margin-top: 15px;
-    display: none;
-}
-
-/* APP */
-
-#app {
-    display: none;
-}
-
-.navbar {
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 30px;
-    background: rgba(10,10,25,0.8);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    backdrop-filter: blur(20px);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.nav-logo {
-    font-size: 25px;
-    font-weight: 900;
-}
-
-.logout {
-    background: rgba(255,80,100,0.15);
-    border: 1px solid rgba(255,80,100,0.3);
-}
-
-.layout {
-    display: flex;
-    min-height: calc(100vh - 70px);
-}
-
-.sidebar {
-    width: 230px;
-    padding: 25px 15px;
-    border-right: 1px solid rgba(255,255,255,0.08);
-    background: rgba(10,10,25,0.45);
-}
-
-.sidebar button {
-    width: 100%;
-    text-align: left;
-    margin-bottom: 10px;
-    background: transparent;
-    color: #aaaabd;
-}
-
-.sidebar button.active,
-.sidebar button:hover {
-    background: rgba(124,92,255,0.18);
-    color: white;
-}
-
-.content {
-    flex: 1;
-    padding: 35px;
-    max-width: 1100px;
-}
-
-.page {
-    display: none;
-}
-
-.page.active {
-    display: block;
-}
-
-.page-title {
-    font-size: 32px;
-    font-weight: 900;
-    margin-bottom: 8px;
-}
-
-.page-subtitle {
-    color: #9999b0;
-    margin-bottom: 30px;
-}
-
-.card {
-    background: rgba(20,20,40,0.72);
-    border: 1px solid rgba(255,255,255,0.09);
-    border-radius: 20px;
-    padding: 25px;
-    margin-bottom: 20px;
-    backdrop-filter: blur(15px);
-}
-
-.card h2 {
-    margin-bottom: 18px;
-}
-
-.save {
-    margin-top: 20px;
-}
-
-.danger {
-    background: #8b2e3c;
-}
-
-.success {
-    color: #7dffae;
-    margin-top: 15px;
-    display: none;
-}
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-bottom: 25px;
-}
-
-.stat {
-    background: rgba(255,255,255,0.05);
-    padding: 22px;
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,0.08);
-}
-
-.stat-number {
-    font-size: 30px;
-    font-weight: 900;
-}
-
-.stat-label {
-    color: #9999b0;
-    margin-top: 5px;
-}
-
-.link-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.project-item,
-.announcement-item {
-    padding: 16px;
+    margin-top: 18px;
+    padding: 17px;
+    border: 0;
     border-radius: 14px;
-    background: rgba(255,255,255,0.05);
-    margin-top: 12px;
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    align-items: center;
-}
-
-.project-info,
-.announcement-info {
-    flex: 1;
-}
-
-.small {
-    color: #9999b0;
-    margin-top: 5px;
-}
-
-.view-site {
-    display: inline-block;
-    text-decoration: none;
+    background: linear-gradient(90deg, #7545ff, #ae55ff);
     color: white;
-    background: rgba(124,92,255,0.2);
-    padding: 12px 16px;
-    border-radius: 12px;
-    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-/* MOBILE */
+button:active {
+    transform: scale(.98);
+}
 
-@media(max-width: 750px) {
-
-    .layout {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        display: flex;
-        overflow-x: auto;
-        gap: 8px;
-        padding: 12px;
-    }
-
-    .sidebar button {
-        min-width: max-content;
-        margin: 0;
-    }
-
-    .content {
-        padding: 20px;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-    .link-row {
-        grid-template-columns: 1fr;
-    }
-
-    .navbar {
-        padding: 0 15px;
-    }
-
-    .project-item,
-    .announcement-item {
-        flex-direction: column;
-        align-items: stretch;
-    }
+#status {
+    margin-top: 18px;
+    text-align: center;
+    min-height: 24px;
+    color: #ff8080;
 }
 </style>
 </head>
 
 <body>
 
+<div class="login-box">
 
-<!-- =====================================================
-     LOGIN
-===================================================== -->
+    <div class="logo">CLIPZY</div>
+    <div class="subtitle">Admin Panel</div>
 
-<div id="loginScreen">
+    <form id="loginForm">
 
-    <div class="login-box">
-
-        <div class="logo">CLIPZY</div>
-
-        <div class="login-subtitle">
-            Admin Panel
-        </div>
-
-        <label>
-            Admin Password
-        </label>
+        <label for="password">Admin Password</label>
 
         <input
             id="password"
             type="password"
             placeholder="Enter password"
-            onkeydown="if(event.key === 'Enter') login()"
+            autocomplete="current-password"
+            required
         >
 
-        <button
-            class="login-button"
-            onclick="login()"
-        >
+        <button id="loginButton" type="submit">
             🔐 Login
         </button>
 
-        <div
-            id="loginError"
-            class="error"
-        >
-            Incorrect password.
-        </div>
+        <div id="status"></div>
 
-    </div>
+    </form>
 
 </div>
-
-
-<!-- =====================================================
-     ADMIN APP
-===================================================== -->
-
-<div id="app">
-
-    <div class="navbar">
-
-        <div class="nav-logo">
-            ⚡ CLIPZY ADMIN
-        </div>
-
-        <button
-            class="logout"
-            onclick="logout()"
-        >
-            Logout
-        </button>
-
-    </div>
-
-
-    <div class="layout">
-
-        <!-- SIDEBAR -->
-
-        <aside class="sidebar">
-
-            <button
-                class="active"
-                onclick="showPage('dashboard', this)"
-            >
-                📊 Dashboard
-            </button>
-
-            <button
-                onclick="showPage('homepage', this)"
-            >
-                🏠 Homepage
-            </button>
-
-            <button
-                onclick="showPage('projects', this)"
-            >
-                🚀 Projects
-            </button>
-
-            <button
-                onclick="showPage('links', this)"
-            >
-                🔗 Links
-            </button>
-
-        </aside>
-
-
-        <!-- CONTENT -->
-
-        <main class="content">
-
-
-            <!-- DASHBOARD -->
-
-            <section
-                id="dashboard"
-                class="page active"
-            >
-
-                <div class="page-title">
-                    Dashboard
-                </div>
-
-                <div class="page-subtitle">
-                    Welcome to your CLIPZY control panel.
-                </div>
-
-
-                <div class="stats">
-
-                    <div class="stat">
-                        <div
-                            id="projectCount"
-                            class="stat-number"
-                        >
-                            0
-                        </div>
-
-                        <div class="stat-label">
-                            Projects
-                        </div>
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div class="stat-number">
-                            LIVE
-                        </div>
-
-                        <div class="stat-label">
-                            Website
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div class="stat-number">
-                            API
-                        </div>
-
-                        <div class="stat-label">
-                            Connected
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="card">
-
-                    <h2>
-                        🌐 Your Website
-                    </h2>
-
-                    <p class="small">
-                        Open your live CLIPZY website.
-                    </p>
-
-                    <a
-                        class="view-site"
-                        href="https://therealclipzy.github.io"
-                        target="_blank"
-                    >
-                        Open Website →
-                    </a>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- HOMEPAGE -->
-
-            <section
-                id="homepage"
-                class="page"
-            >
-
-                <div class="page-title">
-                    Homepage
-                </div>
-
-                <div class="page-subtitle">
-                    Change the main text on your website.
-                </div>
-
-
-                <div class="card">
-
-                    <h2>
-                        ✨ Hero Section
-                    </h2>
-
-
-                    <label>
-                        Badge
-                    </label>
-
-                    <input
-                        id="heroBadge"
-                        value="⚡ WELCOME TO MY WEBSITE"
-                    >
-
-
-                    <label>
-                        Main Title
-                    </label>
-
-                    <input
-                        id="heroTitle"
-                        value="CLIPZY"
-                    >
-
-
-                    <label>
-                        Description
-                    </label>
-
-                    <textarea id="heroDescription">Gaming. Projects. Content.
-Welcome to my corner of the internet.</textarea>
-
-
-                    <button
-                        class="save"
-                        onclick="saveHomepage()"
-                    >
-                        💾 Save Homepage
-                    </button>
-
-
-                    <div
-                        id="homepageSuccess"
-                        class="success"
-                    >
-                        Homepage updated successfully! ✓
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- PROJECTS -->
-
-            <section
-                id="projects"
-                class="page"
-            >
-
-                <div class="page-title">
-                    Projects
-                </div>
-
-                <div class="page-subtitle">
-                    Manage the project shown on your website.
-                </div>
-
-
-                <div class="card">
-
-                    <h2>
-                        🚀 Current Project
-                    </h2>
-
-
-                    <label>
-                        Project Title
-                    </label>
-
-                    <input
-                        id="projectTitle"
-                        value="🚀 More Coming Soon"
-                    >
-
-
-                    <label>
-                        Project Description
-                    </label>
-
-                    <textarea id="projectDescription">More awesome projects are being worked on. Stay tuned!</textarea>
-
-
-                    <button
-                        class="save"
-                        onclick="saveProject()"
-                    >
-                        💾 Save Project
-                    </button>
-
-
-                    <div
-                        id="projectSuccess"
-                        class="success"
-                    >
-                        Project updated successfully! ✓
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- LINKS -->
-
-            <section
-                id="links"
-                class="page"
-            >
-
-                <div class="page-title">
-                    Links
-                </div>
-
-                <div class="page-subtitle">
-                    Change your social media links.
-                </div>
-
-
-                <div class="card">
-
-                    <div class="link-row">
-
-                        <div>
-
-                            <label>
-                                YouTube
-                            </label>
-
-                            <input
-                                id="youtube"
-                                placeholder="https://youtube.com/..."
-                            >
-
-                        </div>
-
-
-                        <div>
-
-                            <label>
-                                Discord
-                            </label>
-
-                            <input
-                                id="discord"
-                                placeholder="https://discord.gg/..."
-                            >
-
-                        </div>
-
-
-                        <div>
-
-                            <label>
-                                TikTok
-                            </label>
-
-                            <input
-                                id="tiktok"
-                                placeholder="https://tiktok.com/@..."
-                            >
-
-                        </div>
-
-
-                        <div>
-
-                            <label>
-                                GitHub
-                            </label>
-
-                            <input
-                                id="github"
-                                value="https://github.com/therealclipzy"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        class="save"
-                        onclick="saveLinks()"
-                    >
-                        💾 Save Links
-                    </button>
-
-
-                    <div
-                        id="linksSuccess"
-                        class="success"
-                    >
-                        Links updated successfully! ✓
-                    </div>
-
-                </div>
-
-            </section>
-
-
-        </main>
-
-    </div>
-
-</div>
-
-
 
 <script>
 
-/* =========================================================
-   SETTINGS
-========================================================= */
+const API_URL = "https://clipzy-admin-api.suhaanali161.workers.dev";
 
-const API_URL =
-    "https://clipzy-admin-api.suhaanali161.workers.dev";
+const form = document.getElementById("loginForm");
+const passwordInput = document.getElementById("password");
+const button = document.getElementById("loginButton");
+const status = document.getElementById("status");
 
+form.addEventListener("submit", async function(event) {
 
-/* =========================================================
-   LOGIN
-========================================================= */
+    event.preventDefault();
 
-async function login() {
-
-    const password =
-        document
-        .getElementById("password")
-        .value
-        .trim();
-
-    const error =
-        document
-        .getElementById("loginError");
-
+    const password = passwordInput.value;
 
     if (!password) {
-
-        error.textContent =
-            "Enter your admin password.";
-
-        error.style.display =
-            "block";
-
+        status.textContent = "Enter your password.";
         return;
     }
 
-
-    error.style.display =
-        "none";
-
+    button.disabled = true;
+    button.textContent = "⏳ Checking...";
+    status.textContent = "";
 
     try {
 
-        const response =
-            await fetch(API_URL, {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-
-                    password: password,
-
-                    action: "login"
-
-                })
-
-            });
-
-
-        const result =
-            await response.json();
-
-
-        if (!response.ok || !result.success) {
-
-            error.textContent =
-                result.error ||
-                "Incorrect password.";
-
-            error.style.display =
-                "block";
-
-            return;
-        }
-
-
-        sessionStorage.setItem(
-            "clipzy_admin_password",
-            password
-        );
-
-
-        document
-            .getElementById("loginScreen")
-            .style.display = "none";
-
-
-        document
-            .getElementById("app")
-            .style.display = "block";
-
-
-    } catch (err) {
-
-        console.error(err);
-
-        error.textContent =
-            "Could not connect to the admin API.";
-
-        error.style.display =
-            "block";
-    }
-}
-
-
-/* =========================================================
-   AUTO LOGIN
-========================================================= */
-
-window.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        const password =
-            sessionStorage.getItem(
-                "clipzy_admin_password"
-            );
-
-
-        if (password) {
-
-            document
-                .getElementById("loginScreen")
-                .style.display = "none";
-
-            document
-                .getElementById("app")
-                .style.display = "block";
-        }
-
-        updateProjectCount();
-    }
-);
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-function logout() {
-
-    sessionStorage.removeItem(
-        "clipzy_admin_password"
-    );
-
-    location.reload();
-}
-
-
-/* =========================================================
-   PAGE SWITCHING
-========================================================= */
-
-function showPage(page, button) {
-
-    document
-        .querySelectorAll(".page")
-        .forEach(p => {
-            p.classList.remove("active");
-        });
-
-
-    document
-        .getElementById(page)
-        .classList.add("active");
-
-
-    document
-        .querySelectorAll(".sidebar button")
-        .forEach(b => {
-            b.classList.remove("active");
-        });
-
-
-    button.classList.add("active");
-}
-
-
-/* =========================================================
-   API HELPER
-========================================================= */
-
-async function apiRequest(action, data) {
-
-    const password =
-        sessionStorage.getItem(
-            "clipzy_admin_password"
-        );
-
-
-    if (!password) {
-
-        logout();
-
-        return null;
-    }
-
-
-    const response =
-        await fetch(API_URL, {
-
+        const response = await fetch(API_URL, {
             method: "POST",
 
             headers: {
@@ -976,96 +157,47 @@ async function apiRequest(action, data) {
             },
 
             body: JSON.stringify({
-
-                password: password,
-
-                action: action,
-
-                data: data
-
+                action: "login",
+                password: password
             })
-
         });
 
+        const result = await response.json();
 
-    const result =
-        await response.json();
+        if (result.success) {
 
+            sessionStorage.setItem("clipzy_admin_password", password);
 
-    if (response.status === 401) {
+            status.style.color = "#70ff9b";
+            status.textContent = "✅ Login successful!";
 
-        sessionStorage.removeItem(
-            "clipzy_admin_password"
-        );
+            setTimeout(() => {
+                window.location.href = "./dashboard.html";
+            }, 500);
 
-        alert("Your admin session expired.");
+        } else {
 
-        location.reload();
+            status.style.color = "#ff8080";
+            status.textContent = "❌ " + (result.error || "Login failed.");
 
-        return null;
-    }
-
-
-    if (!response.ok || !result.success) {
-
-        throw new Error(
-            result.error ||
-            "Something went wrong."
-        );
-    }
-
-
-    return result;
-}
-
-
-/* =========================================================
-   SAVE HOMEPAGE
-========================================================= */
-
-async function saveHomepage() {
-
-    const badge =
-        document
-        .getElementById("heroBadge")
-        .value;
-
-    const title =
-        document
-        .getElementById("heroTitle")
-        .value;
-
-    const description =
-        document
-        .getElementById("heroDescription")
-        .value;
-
-
-    try {
-
-        await apiRequest(
-            "homepage",
-            {
-                badge,
-                title,
-                description
-            }
-        );
-
-
-        showSuccess(
-            "homepageSuccess"
-        );
-
+        }
 
     } catch (error) {
 
-        alert(
-            "Failed to save homepage:\n\n" +
-            error.message
-        );
+        console.error(error);
+
+        status.style.color = "#ff8080";
+        status.textContent =
+            "❌ Cannot connect to the admin server.";
+
     }
-}
 
+    button.disabled = false;
+    button.textContent = "🔐 Login";
 
-/* ===================================================
+});
+
+</script>
+
+</body>
+</html>
