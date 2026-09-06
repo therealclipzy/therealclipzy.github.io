@@ -3,346 +3,293 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CLIPZY Admin</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
+body{
     background:
-        radial-gradient(circle at top left, #43208c 0%, transparent 35%),
-        radial-gradient(circle at bottom right, #151b65 0%, transparent 40%),
-        #080812;
-    color: white;
-    min-height: 100vh;
+        radial-gradient(circle at top left,#35106b 0%,transparent 35%),
+        radial-gradient(circle at bottom right,#101d78 0%,transparent 35%),
+        #060611;
+    color:white;
+    min-height:100vh;
 }
 
-button,
-input,
-textarea {
-    font: inherit;
+button,input,textarea{
+    font:inherit;
 }
 
-button {
-    cursor: pointer;
+button{
+    cursor:pointer;
 }
 
-.hidden {
-    display: none !important;
+.hidden{
+    display:none!important;
 }
 
 /* LOGIN */
 
-#loginScreen {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+#loginScreen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
 
-.login-card {
-    width: 100%;
-    max-width: 420px;
-    padding: 35px;
-    border-radius: 24px;
-    background: rgba(20, 20, 40, 0.8);
-    border: 1px solid rgba(255,255,255,.1);
-    box-shadow: 0 25px 80px rgba(0,0,0,.45);
-    backdrop-filter: blur(20px);
+.loginBox{
+    width:100%;
+    max-width:390px;
+    background:rgba(20,18,42,.88);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:22px;
+    padding:32px;
+    box-shadow:0 25px 80px rgba(0,0,0,.45);
 }
 
-.logo {
-    font-size: 34px;
-    font-weight: 900;
-    text-align: center;
-    margin-bottom: 8px;
+.logo{
+    text-align:center;
+    font-size:30px;
+    font-weight:900;
+    margin-bottom:5px;
 }
 
-.subtitle {
-    text-align: center;
-    color: #a9a9c4;
-    margin-bottom: 30px;
+.subtitle{
+    text-align:center;
+    color:#aaa8bd;
+    margin-bottom:28px;
 }
 
-.input {
-    width: 100%;
-    padding: 15px;
-    border-radius: 12px;
-    border: 1px solid #343452;
-    background: #111122;
-    color: white;
-    outline: none;
-    margin-bottom: 14px;
+input,textarea{
+    width:100%;
+    background:#0e0c20;
+    border:1px solid #2b2745;
+    color:white;
+    padding:13px 14px;
+    border-radius:12px;
+    outline:none;
+    margin-top:8px;
+    margin-bottom:16px;
 }
 
-.input:focus {
-    border-color: #7957ff;
+input:focus,textarea:focus{
+    border-color:#6575ff;
 }
 
-.primary {
-    width: 100%;
-    padding: 15px;
-    border: 0;
-    border-radius: 12px;
-    color: white;
-    font-weight: bold;
-    background: linear-gradient(135deg, #7047ff, #9b4dff);
+textarea{
+    min-height:120px;
+    resize:vertical;
 }
 
-.primary:hover {
-    opacity: .9;
+.primary{
+    width:100%;
+    border:0;
+    border-radius:12px;
+    padding:14px;
+    background:linear-gradient(135deg,#5368ff,#7357ff);
+    color:white;
+    font-weight:800;
 }
 
-.primary:disabled {
-    opacity: .5;
-    cursor: not-allowed;
+.primary:hover{
+    opacity:.9;
 }
 
-.message {
-    margin-top: 15px;
-    text-align: center;
-    min-height: 20px;
-    color: #ff8080;
+.message{
+    margin-top:15px;
+    text-align:center;
+    color:#ff7777;
+    min-height:20px;
 }
 
 /* DASHBOARD */
 
-#dashboard {
-    min-height: 100vh;
+#dashboard{
+    min-height:100vh;
 }
 
-.topbar {
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 25px;
-    background: rgba(10,10,25,.85);
-    border-bottom: 1px solid rgba(255,255,255,.08);
-    backdrop-filter: blur(15px);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+.topbar{
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    background:rgba(8,7,20,.8);
+    backdrop-filter:blur(15px);
+    position:sticky;
+    top:0;
+    z-index:10;
 }
 
-.top-logo {
-    font-size: 23px;
-    font-weight: 900;
+.brand{
+    font-size:21px;
+    font-weight:900;
 }
 
-.logout {
-    padding: 10px 16px;
-    border-radius: 10px;
-    border: 1px solid #393956;
-    background: #17172b;
-    color: white;
+.logout{
+    border:1px solid #393451;
+    background:#111022;
+    color:white;
+    padding:9px 15px;
+    border-radius:10px;
 }
 
-.layout {
-    display: flex;
-    min-height: calc(100vh - 70px);
+.layout{
+    display:flex;
+    min-height:calc(100vh - 70px);
 }
 
-/* SIDEBAR */
-
-.sidebar {
-    width: 230px;
-    padding: 20px;
-    background: rgba(11,11,27,.8);
-    border-right: 1px solid rgba(255,255,255,.08);
+.sidebar{
+    width:230px;
+    border-right:1px solid rgba(255,255,255,.08);
+    padding:20px;
 }
 
-.nav-btn {
-    width: 100%;
-    text-align: left;
-    padding: 13px 15px;
-    margin-bottom: 8px;
-    border-radius: 11px;
-    border: 0;
-    color: #aaaac2;
-    background: transparent;
+.navBtn{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:#aaa8bd;
+    text-align:left;
+    padding:13px;
+    border-radius:10px;
+    margin-bottom:7px;
 }
 
-.nav-btn:hover,
-.nav-btn.active {
-    background: #29204d;
-    color: white;
+.navBtn:hover,
+.navBtn.active{
+    background:#211d3b;
+    color:white;
 }
 
-/* CONTENT */
-
-.content {
-    flex: 1;
-    padding: 30px;
-    max-width: 1100px;
+.content{
+    flex:1;
+    padding:30px;
+    max-width:1100px;
 }
 
-.page {
-    display: none;
+.page{
+    display:none;
 }
 
-.page.active {
-    display: block;
+.page.active{
+    display:block;
 }
 
-.page-title {
-    font-size: 32px;
-    font-weight: 900;
-    margin-bottom: 8px;
+h1{
+    font-size:32px;
+    margin-bottom:8px;
 }
 
-.page-description {
-    color: #9f9fb9;
-    margin-bottom: 25px;
+.desc{
+    color:#9996aa;
+    margin-bottom:25px;
 }
 
-/* CARDS */
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    margin-bottom: 25px;
+.card{
+    background:rgba(18,16,38,.86);
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:20px;
 }
 
-.card {
-    background: rgba(20,20,40,.75);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 18px;
-    padding: 22px;
+.card h2{
+    margin-bottom:18px;
 }
 
-.card h3 {
-    margin-bottom: 8px;
+label{
+    display:block;
+    color:#c7c4d6;
+    font-size:14px;
+    margin-top:8px;
 }
 
-.card p {
-    color: #a6a6bd;
+.save{
+    width:auto;
+    padding:12px 20px;
 }
 
-/* EDITOR */
-
-.editor {
-    background: rgba(20,20,40,.75);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 18px;
-    padding: 25px;
-    margin-bottom: 20px;
+.status{
+    margin-top:15px;
+    padding:12px;
+    border-radius:10px;
+    display:none;
 }
 
-.editor h2 {
-    margin-bottom: 20px;
+.status.success{
+    display:block;
+    background:rgba(30,180,100,.12);
+    border:1px solid rgba(30,180,100,.25);
+    color:#65e09c;
 }
 
-.label {
-    display: block;
-    color: #b4b4ca;
-    font-size: 14px;
-    margin-bottom: 7px;
+.status.error{
+    display:block;
+    background:rgba(255,70,70,.12);
+    border:1px solid rgba(255,70,70,.25);
+    color:#ff8585;
 }
 
-textarea.input {
-    min-height: 120px;
-    resize: vertical;
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
 }
 
-.save {
-    margin-top: 5px;
-    padding: 13px 20px;
-    border: 0;
-    border-radius: 11px;
-    background: #7047ff;
-    color: white;
-    font-weight: bold;
+.stat{
+    background:#121027;
+    border:1px solid #282441;
+    border-radius:15px;
+    padding:22px;
 }
 
-.save:hover {
-    opacity: .9;
+.statNumber{
+    font-size:27px;
+    font-weight:900;
 }
 
-.status {
-    margin-top: 12px;
-    color: #8affb0;
-    min-height: 20px;
+.statText{
+    color:#9996aa;
+    margin-top:5px;
 }
 
-/* PROJECTS / ANNOUNCEMENTS */
+@media(max-width:750px){
 
-.item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    padding: 16px;
-    margin-top: 12px;
-    border-radius: 12px;
-    background: #111124;
-    border: 1px solid #272742;
-}
-
-.item-info {
-    flex: 1;
-}
-
-.item-info strong {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.item-info span {
-    color: #9999b1;
-    font-size: 14px;
-}
-
-.delete {
-    padding: 9px 13px;
-    border: 0;
-    border-radius: 9px;
-    background: #3b1824;
-    color: #ff8297;
-}
-
-/* MOBILE */
-
-@media (max-width: 750px) {
-
-    .layout {
-        display: block;
+    .layout{
+        display:block;
     }
 
-    .sidebar {
-        width: 100%;
-        display: flex;
-        overflow-x: auto;
-        gap: 7px;
-        border-right: 0;
-        border-bottom: 1px solid rgba(255,255,255,.08);
-        padding: 12px;
+    .sidebar{
+        width:100%;
+        display:flex;
+        overflow-x:auto;
+        gap:7px;
+        border-right:0;
+        border-bottom:1px solid rgba(255,255,255,.08);
+        padding:12px;
     }
 
-    .nav-btn {
-        min-width: max-content;
-        width: auto;
-        margin: 0;
+    .navBtn{
+        width:auto;
+        white-space:nowrap;
+        margin:0;
     }
 
-    .content {
-        padding: 20px;
+    .content{
+        padding:20px;
     }
 
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .page-title {
-        font-size: 27px;
+    .stats{
+        grid-template-columns:1fr;
     }
 }
 </style>
@@ -350,33 +297,23 @@ textarea.input {
 
 <body>
 
-<!-- ========================= -->
 <!-- LOGIN -->
-<!-- ========================= -->
 
 <div id="loginScreen">
 
-    <div class="login-card">
+    <div class="loginBox">
 
         <div class="logo">⚡ CLIPZY</div>
-
-        <div class="subtitle">
-            Admin Panel
-        </div>
+        <div class="subtitle">Admin Panel</div>
 
         <input
             id="password"
-            class="input"
             type="password"
-            placeholder="Admin password"
-            autocomplete="current-password"
+            placeholder="Enter admin password"
+            autocomplete="off"
         >
 
-        <button
-            id="loginBtn"
-            class="primary"
-            type="button"
-        >
+        <button class="primary" onclick="login()">
             Login
         </button>
 
@@ -387,102 +324,76 @@ textarea.input {
 </div>
 
 
-<!-- ========================= -->
 <!-- DASHBOARD -->
-<!-- ========================= -->
 
 <div id="dashboard" class="hidden">
 
     <div class="topbar">
 
-        <div class="top-logo">
+        <div class="brand">
             ⚡ CLIPZY ADMIN
         </div>
 
-        <button
-            id="logoutBtn"
-            class="logout"
-            type="button"
-        >
+        <button class="logout" onclick="logout()">
             Logout
         </button>
 
     </div>
 
-
     <div class="layout">
-
-        <!-- SIDEBAR -->
 
         <aside class="sidebar">
 
-            <button class="nav-btn active" data-page="dashboardPage">
-                🏠 Dashboard
+            <button class="navBtn active" onclick="showPage('dashboardPage',this)">
+                Dashboard
             </button>
 
-            <button class="nav-btn" data-page="homepagePage">
-                ✏️ Homepage
+            <button class="navBtn" onclick="showPage('homepagePage',this)">
+                Homepage
             </button>
 
-            <button class="nav-btn" data-page="projectPage">
-                🚀 Project
+            <button class="navBtn" onclick="showPage('projectPage',this)">
+                Project
             </button>
 
-            <button class="nav-btn" data-page="linksPage">
-                🔗 Links
+            <button class="navBtn" onclick="showPage('linksPage',this)">
+                Links
             </button>
 
-            <button class="nav-btn" data-page="announcementPage">
-                📢 Announcements
+            <button class="navBtn" onclick="showPage('announcementPage',this)">
+                Announcements
             </button>
 
         </aside>
 
 
-        <!-- CONTENT -->
-
         <main class="content">
 
-
-            <!-- DASHBOARD PAGE -->
+            <!-- DASHBOARD -->
 
             <section id="dashboardPage" class="page active">
 
-                <div class="page-title">
-                    Dashboard
-                </div>
-
-                <div class="page-description">
+                <h1>Dashboard</h1>
+                <p class="desc">
                     Welcome to your CLIPZY control panel.
-                </div>
+                </p>
 
-                <div class="grid">
+                <div class="stats">
 
-                    <div class="card">
-                        <h3>🌐 Website</h3>
-                        <p>CLIPZY is online.</p>
+                    <div class="stat">
+                        <div class="statNumber">∞</div>
+                        <div class="statText">Ideas</div>
                     </div>
 
-                    <div class="card">
-                        <h3>☁️ Backend</h3>
-                        <p>Connected through Cloudflare Worker.</p>
+                    <div class="stat">
+                        <div class="statNumber">24/7</div>
+                        <div class="statText">Creating</div>
                     </div>
 
-                    <div class="card">
-                        <h3>⚡ GitHub</h3>
-                        <p>Changes are published through GitHub.</p>
+                    <div class="stat">
+                        <div class="statNumber">100%</div>
+                        <div class="statText">CLIPZY</div>
                     </div>
-
-                </div>
-
-                <div class="editor">
-
-                    <h2>Quick Info</h2>
-
-                    <p style="color:#aaaac2;line-height:1.7;">
-                        Use the menu on the left to edit your homepage,
-                        project, social links, and announcements.
-                    </p>
 
                 </div>
 
@@ -493,57 +404,27 @@ textarea.input {
 
             <section id="homepagePage" class="page">
 
-                <div class="page-title">
-                    Homepage
-                </div>
+                <h1>Homepage</h1>
 
-                <div class="page-description">
-                    Change the text shown on your main website.
-                </div>
+                <p class="desc">
+                    Edit the text shown on your main website.
+                </p>
 
-
-                <div class="editor">
+                <div class="card">
 
                     <h2>Hero Section</h2>
 
-                    <label class="label">
-                        Badge
-                    </label>
+                    <label>Badge</label>
+                    <input id="badge" value="⚡ WELCOME TO MY WEBSITE">
 
-                    <input
-                        id="homeBadge"
-                        class="input"
-                        placeholder="⚡ WELCOME TO MY WEBSITE"
-                    >
+                    <label>Title</label>
+                    <input id="heroTitle" value="CLIPZY">
 
+                    <label>Description</label>
+                    <textarea id="heroDescription">Gaming. Projects. Content.
+Welcome to my corner of the internet.</textarea>
 
-                    <label class="label">
-                        Main Title
-                    </label>
-
-                    <input
-                        id="homeTitle"
-                        class="input"
-                        placeholder="CLIPZY"
-                    >
-
-
-                    <label class="label">
-                        Description
-                    </label>
-
-                    <textarea
-                        id="homeDescription"
-                        class="input"
-                        placeholder="Gaming. Projects. Content."
-                    ></textarea>
-
-
-                    <button
-                        id="saveHomepage"
-                        class="save"
-                        type="button"
-                    >
+                    <button class="primary save" onclick="saveHomepage()">
                         Save Homepage
                     </button>
 
@@ -558,46 +439,26 @@ textarea.input {
 
             <section id="projectPage" class="page">
 
-                <div class="page-title">
-                    Project
-                </div>
+                <h1>Project</h1>
 
-                <div class="page-description">
-                    Edit your featured project.
-                </div>
+                <p class="desc">
+                    Change your featured project.
+                </p>
 
-
-                <div class="editor">
+                <div class="card">
 
                     <h2>Featured Project</h2>
 
-                    <label class="label">
-                        Project Title
-                    </label>
-
+                    <label>Project Title</label>
                     <input
                         id="projectTitle"
-                        class="input"
-                        placeholder="🚀 More Coming Soon"
+                        value="🚀 More Coming Soon"
                     >
 
+                    <label>Project Description</label>
+                    <textarea id="projectDescription">More projects and updates are coming soon.</textarea>
 
-                    <label class="label">
-                        Project Description
-                    </label>
-
-                    <textarea
-                        id="projectDescription"
-                        class="input"
-                        placeholder="Something awesome is coming."
-                    ></textarea>
-
-
-                    <button
-                        id="saveProject"
-                        class="save"
-                        type="button"
-                    >
+                    <button class="primary save" onclick="saveProject()">
                         Save Project
                     </button>
 
@@ -612,66 +473,30 @@ textarea.input {
 
             <section id="linksPage" class="page">
 
-                <div class="page-title">
-                    Links
-                </div>
+                <h1>Links</h1>
 
-                <div class="page-description">
-                    Update your social media links.
-                </div>
+                <p class="desc">
+                    Update your social links.
+                </p>
 
+                <div class="card">
 
-                <div class="editor">
+                    <label>YouTube</label>
+                    <input id="youtube" placeholder="https://youtube.com/...">
 
-                    <label class="label">
-                        YouTube
-                    </label>
+                    <label>Discord</label>
+                    <input id="discord" placeholder="https://discord.gg/...">
 
-                    <input
-                        id="youtube"
-                        class="input"
-                        placeholder="https://youtube.com/..."
-                    >
+                    <label>TikTok</label>
+                    <input id="tiktok" placeholder="https://tiktok.com/@...">
 
-
-                    <label class="label">
-                        Discord
-                    </label>
-
-                    <input
-                        id="discord"
-                        class="input"
-                        placeholder="https://discord.gg/..."
-                    >
-
-
-                    <label class="label">
-                        TikTok
-                    </label>
-
-                    <input
-                        id="tiktok"
-                        class="input"
-                        placeholder="https://tiktok.com/@..."
-                    >
-
-
-                    <label class="label">
-                        GitHub
-                    </label>
-
+                    <label>GitHub</label>
                     <input
                         id="github"
-                        class="input"
-                        placeholder="https://github.com/therealclipzy"
+                        value="https://github.com/therealclipzy"
                     >
 
-
-                    <button
-                        id="saveLinks"
-                        class="save"
-                        type="button"
-                    >
+                    <button class="primary save" onclick="saveLinks()">
                         Save Links
                     </button>
 
@@ -686,46 +511,29 @@ textarea.input {
 
             <section id="announcementPage" class="page">
 
-                <div class="page-title">
-                    Announcements
-                </div>
+                <h1>Announcements</h1>
 
-                <div class="page-description">
+                <p class="desc">
                     Publish an announcement to your website.
-                </div>
+                </p>
 
+                <div class="card">
 
-                <div class="editor">
-
-                    <h2>New Announcement</h2>
-
-                    <label class="label">
-                        Announcement Title
-                    </label>
+                    <label>Announcement Title</label>
 
                     <input
                         id="announcementTitle"
-                        class="input"
-                        placeholder="Website Update"
+                        placeholder="Big update!"
                     >
 
-
-                    <label class="label">
-                        Announcement Text
-                    </label>
+                    <label>Announcement Text</label>
 
                     <textarea
                         id="announcementText"
-                        class="input"
-                        placeholder="Something new has been added!"
+                        placeholder="Write your announcement here..."
                     ></textarea>
 
-
-                    <button
-                        id="publishAnnouncement"
-                        class="save"
-                        type="button"
-                    >
+                    <button class="primary save" onclick="saveAnnouncement()">
                         Publish Announcement
                     </button>
 
@@ -734,7 +542,6 @@ textarea.input {
                 </div>
 
             </section>
-
 
         </main>
 
@@ -745,301 +552,408 @@ textarea.input {
 
 <script>
 
-/* ==========================================
+/* =========================
    SETTINGS
-========================================== */
+========================= */
 
 const API_URL =
-    "https://clipzy-admin-api.suhaanali161.workers.dev";
+"https://clipzy-admin-api.suhaanali161.workers.dev";
 
 /*
-   Your admin password is checked by Cloudflare.
-   DO NOT put your GitHub token here.
+   This is ONLY the admin login gate.
+
+   The Cloudflare Worker still protects the
+   actual website editing requests.
 */
 
 const ADMIN_PASSWORD = "tester4ever";
 
 
-/* ==========================================
-   ELEMENTS
-========================================== */
-
-const loginScreen =
-    document.getElementById("loginScreen");
-
-const dashboard =
-    document.getElementById("dashboard");
-
-const passwordInput =
-    document.getElementById("password");
-
-const loginBtn =
-    document.getElementById("loginBtn");
-
-const loginMessage =
-    document.getElementById("loginMessage");
-
-const logoutBtn =
-    document.getElementById("logoutBtn");
-
-
-/* ==========================================
-   API
-========================================== */
-
-async function apiRequest(action, data = {}) {
-
-    const password =
-        sessionStorage.getItem("clipzy_admin_password");
-
-    const response = await fetch(API_URL, {
-
-        method: "POST",
-
-        headers: {
-            "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-
-            action: action,
-
-            password: password,
-
-            data: data
-
-        })
-
-    });
-
-    const result = await response.json();
-
-    if (!response.ok || !result.success) {
-
-        throw new Error(
-            result.error || "Request failed"
-        );
-
-    }
-
-    return result;
-}
-
-
-/* ==========================================
+/* =========================
    LOGIN
-========================================== */
+========================= */
 
-loginBtn.addEventListener("click", async function () {
+function login(){
 
     const password =
-        passwordInput.value.trim();
+        document.getElementById("password").value;
 
-    if (!password) {
+    const message =
+        document.getElementById("loginMessage");
 
-        loginMessage.textContent =
-            "Enter your password.";
+    if(password === ADMIN_PASSWORD){
 
-        return;
-
-    }
-
-    loginBtn.disabled = true;
-    loginBtn.textContent = "Checking...";
-    loginMessage.textContent = "";
-
-    /*
-       First check locally.
-       This gives instant feedback if the
-       password typed is incorrect.
-    */
-
-    if (password !== ADMIN_PASSWORD) {
-
-        loginMessage.textContent =
-            "Wrong password.";
-
-        loginBtn.disabled = false;
-        loginBtn.textContent = "Login";
-
-        return;
-
-    }
-
-
-    try {
-
-        const response = await fetch(
-            API_URL,
-            {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-
-                    action: "login",
-
-                    password: password
-
-                })
-
-            }
+        sessionStorage.setItem(
+            "clipzy_admin_logged_in",
+            "true"
         );
-
-
-        const result =
-            await response.json();
-
-
-        if (!result.success) {
-
-            loginMessage.textContent =
-                result.error || "Login failed.";
-
-            loginBtn.disabled = false;
-            loginBtn.textContent = "Login";
-
-            return;
-
-        }
-
 
         sessionStorage.setItem(
             "clipzy_admin_password",
             password
         );
 
-
-        loginScreen.classList.add("hidden");
-
-        dashboard.classList.remove("hidden");
-
-
-    } catch (error) {
-
-        console.error(error);
-
-        loginMessage.textContent =
-            "Could not connect to the admin server.";
-
-        loginBtn.disabled = false;
-        loginBtn.textContent = "Login";
-
-    }
-
-});
-
-
-/* ==========================================
-   ENTER KEY LOGIN
-========================================== */
-
-passwordInput.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (event.key === "Enter") {
-            loginBtn.click();
-        }
-
-    }
-);
-
-
-/* ==========================================
-   LOGOUT
-========================================== */
-
-logoutBtn.addEventListener(
-    "click",
-    function() {
-
-        sessionStorage.removeItem(
-            "clipzy_admin_password"
-        );
-
-        dashboard.classList.add("hidden");
-
-        loginScreen.classList.remove("hidden");
-
-        passwordInput.value = "";
-
-        loginMessage.textContent = "";
-
-    }
-);
-
-
-/* ==========================================
-   NAVIGATION
-========================================== */
-
-document.querySelectorAll(".nav-btn")
-.forEach(button => {
-
-    button.addEventListener("click", function() {
+        document
+            .getElementById("loginScreen")
+            .classList.add("hidden");
 
         document
-            .querySelectorAll(".nav-btn")
-            .forEach(btn =>
-                btn.classList.remove("active")
-            );
+            .getElementById("dashboard")
+            .classList.remove("hidden");
 
-        button.classList.add("active");
+        message.textContent = "";
 
+    }else{
 
-        document
-            .querySelectorAll(".page")
-            .forEach(page =>
-                page.classList.remove("active")
-            );
+        message.textContent =
+            "Wrong password.";
 
+    }
 
-        const page =
-            document.getElementById(
-                button.dataset.page
-            );
+}
 
 
-        if (page) {
-            page.classList.add("active");
+/* ENTER KEY LOGIN */
+
+document
+    .getElementById("password")
+    .addEventListener("keydown",function(e){
+
+        if(e.key === "Enter"){
+            login();
         }
 
     });
 
-});
+
+/* =========================
+   AUTO LOGIN
+========================= */
+
+if(
+    sessionStorage.getItem(
+        "clipzy_admin_logged_in"
+    ) === "true"
+){
+
+    document
+        .getElementById("loginScreen")
+        .classList.add("hidden");
+
+    document
+        .getElementById("dashboard")
+        .classList.remove("hidden");
+
+}
 
 
-/* ==========================================
-   HOMEPAGE
-========================================== */
+/* =========================
+   LOGOUT
+========================= */
 
-document
-.getElementById("saveHomepage")
-.addEventListener("click", async function() {
+function logout(){
 
-    const button = this;
+    sessionStorage.removeItem(
+        "clipzy_admin_logged_in"
+    );
 
-    const status =
-        document.getElementById(
-            "homepageStatus"
+    sessionStorage.removeItem(
+        "clipzy_admin_password"
+    );
+
+    location.reload();
+
+}
+
+
+/* =========================
+   PAGE SWITCHING
+========================= */
+
+function showPage(pageId,button){
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+            page.classList.remove("active");
+        });
+
+    document
+        .getElementById(pageId)
+        .classList.add("active");
+
+    document
+        .querySelectorAll(".navBtn")
+        .forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+    button.classList.add("active");
+
+}
+
+
+/* =========================
+   API
+========================= */
+
+async function apiRequest(action,data){
+
+    const password =
+        sessionStorage.getItem(
+            "clipzy_admin_password"
         );
 
+    if(!password){
+        throw new Error("You are not logged in.");
+    }
 
-    button.disabled = true;
+    const response = await fetch(API_URL,{
+        method:"POST",
 
-    button.textContent =
-        "Saving...";
+        headers:{
+            "Content-Type":"application/json"
+        },
 
-    status.textContent = "";
+        body:JSON.stringify({
+
+            password:password,
+
+            action:action,
+
+            data:data
+
+        })
+
+    });
+
+    let result;
+
+    try{
+        result = await response.json();
+    }catch{
+        throw new Error(
+            "Cloudflare returned an invalid response."
+        );
+    }
+
+    if(!response.ok || !result.success){
+
+        throw new Error(
+            result.error || "Request failed."
+        );
+
+    }
+
+    return result;
+
+}
 
 
-    try {
+/* =========================
+   STATUS
+========================= */
 
-        await apiRequest(
-            "homepage",
-    
+function setStatus(id,message,success){
+
+    const box =
+        document.getElementById(id);
+
+    box.textContent = message;
+
+    box.className =
+        success
+        ? "status success"
+        : "status error";
+
+}
+
+
+/* =========================
+   HOMEPAGE
+========================= */
+
+async function saveHomepage(){
+
+    setStatus(
+        "homepageStatus",
+        "Saving...",
+        true
+    );
+
+    try{
+
+        await apiRequest("homepage",{
+
+            badge:
+                document.getElementById("badge").value,
+
+            title:
+                document.getElementById("heroTitle").value,
+
+            description:
+                document.getElementById("heroDescription").value
+
+        });
+
+        setStatus(
+            "homepageStatus",
+            "✅ Homepage updated!",
+            true
+        );
+
+    }catch(error){
+
+        setStatus(
+            "homepageStatus",
+            "❌ " + error.message,
+            false
+        );
+
+    }
+
+}
+
+
+/* =========================
+   PROJECT
+========================= */
+
+async function saveProject(){
+
+    setStatus(
+        "projectStatus",
+        "Saving...",
+        true
+    );
+
+    try{
+
+        await apiRequest("project",{
+
+            title:
+                document.getElementById("projectTitle").value,
+
+            description:
+                document.getElementById("projectDescription").value
+
+        });
+
+        setStatus(
+            "projectStatus",
+            "✅ Project updated!",
+            true
+        );
+
+    }catch(error){
+
+        setStatus(
+            "projectStatus",
+            "❌ " + error.message,
+            false
+        );
+
+    }
+
+}
+
+
+/* =========================
+   LINKS
+========================= */
+
+async function saveLinks(){
+
+    setStatus(
+        "linksStatus",
+        "Saving...",
+        true
+    );
+
+    try{
+
+        await apiRequest("links",{
+
+            youtube:
+                document.getElementById("youtube").value,
+
+            discord:
+                document.getElementById("discord").value,
+
+            tiktok:
+                document.getElementById("tiktok").value,
+
+            github:
+                document.getElementById("github").value
+
+        });
+
+        setStatus(
+            "linksStatus",
+            "✅ Links updated!",
+            true
+        );
+
+    }catch(error){
+
+        setStatus(
+            "linksStatus",
+            "❌ " + error.message,
+            false
+        );
+
+    }
+
+}
+
+
+/* =========================
+   ANNOUNCEMENT
+========================= */
+
+async function saveAnnouncement(){
+
+    setStatus(
+        "announcementStatus",
+        "Publishing...",
+        true
+    );
+
+    try{
+
+        await apiRequest("announcement",{
+
+            title:
+                document.getElementById(
+                    "announcementTitle"
+                ).value,
+
+            text:
+                document.getElementById(
+                    "announcementText"
+                ).value
+
+        });
+
+        setStatus(
+            "announcementStatus",
+            "📢 Announcement published!",
+            true
+        );
+
+    }catch(error){
+
+        setStatus(
+            "announcementStatus",
+            "❌ " + error.message,
+            false
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+    </html>
